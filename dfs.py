@@ -1,23 +1,23 @@
-
-
-'''Depth First Search uses STACK AND RECURSION
-'''
-#import defaultdict
 from collections import defaultdict
-def dfs(graph,start,visited,path):
+
+def dfs(graph, start, visited, path):
     path.append(start)
-    visited[start]=True
+    visited[start] = True
     for neighbour in graph[start]:
-       #type ur code here
+        if not visited[neighbour]:  
+            dfs(graph, neighbour, visited, path)  
     return path
-graph=defaultdict(list)
-n,e=map(int,input().split())
+
+graph = defaultdict(list)
+n, e = map(int, input().split())  
 for i in range(e):
-   #type ur code here
-    graph[v].append(u)
-#print(graph)
-start='A'
-visited=defaultdict(bool)
- #type ur code here
-traversedpath=dfs(graph,start,visited,path)
-print(traversedpath)
+    u, v = input().split()  
+    graph[u].append(v)  
+    graph[v].append(u)  
+
+start = list(graph.keys())[0]  
+visited = defaultdict(bool)
+path = []
+print("Sample Output:")
+traversed_path = dfs(graph, start, visited, path)
+print(traversed_path)
